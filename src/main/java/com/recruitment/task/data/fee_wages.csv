@@ -1,0 +1,5 @@
+transaction_value_less_than,fee_percentage_of_transaction_value
+1000,"3,5"
+2500,"2,5"
+5000,"1,1"
+10000,"0,1"
