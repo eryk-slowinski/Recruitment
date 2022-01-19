@@ -16,7 +16,7 @@ class ControllerTest {
     public void getTransactionsDetailsById() {
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        String url = "http://localhost:8080/gettransactionsdetails/getbyid?customer_id=3";
+        String url = "http://localhost:8080/calculatetransactions/getbyid?customer_id=3";
         headers.setBasicAuth("digital", "collier");
         HttpEntity<Void> requestEntity = new HttpEntity<>(null, headers);
         ResponseEntity response = template.exchange(url, HttpMethod.GET, requestEntity, List.class);
@@ -29,7 +29,7 @@ class ControllerTest {
     public void getTransactionsDetails() {
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        String url = "http://localhost:8080/gettransactionsdetails";
+        String url = "http://localhost:8080/calculatetransactions";
         headers.setBasicAuth("digital", "collier");
         HttpEntity<Void> requestEntity = new HttpEntity<>(null, headers);
         ResponseEntity response = template.exchange(url, HttpMethod.GET, requestEntity, List.class);
