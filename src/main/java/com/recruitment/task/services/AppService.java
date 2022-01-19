@@ -87,8 +87,8 @@ public class AppService {
     }
 
     private void createCommissionObject(TransactionsSummary transactionsSummary) {
-        CommissionObject commisionObject = new CommissionObject(null, transactionsSummary.getCustomerId(), transactionsSummary.getTransactionsFeeValue(), new Date());
-        repository.save(commisionObject);
+        CommissionObject commissionObject = new CommissionObject(null, transactionsSummary.getCustomerId(), transactionsSummary.getTransactionsFeeValue(), new Date());
+        repository.save(commissionObject);
     }
 
 }

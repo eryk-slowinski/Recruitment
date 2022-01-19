@@ -10,16 +10,16 @@ public class CommissionObject {
     @Id
     private String id;
     private Long customerId;
-    private float calculatedCommision;
+    private float calculatedCommission;
     private Date timeOfCalculation;
 
     public CommissionObject() {
     }
 
-    public CommissionObject(String id, Long customerId, float calculatedCommision, Date timeOfCalculation) {
+    public CommissionObject(String id, Long customerId, float calculatedCommission, Date timeOfCalculation) {
         this.id = id;
         this.customerId = customerId;
-        this.calculatedCommision = calculatedCommision;
+        this.calculatedCommission = calculatedCommission;
         this.timeOfCalculation = timeOfCalculation;
     }
 
@@ -39,12 +39,12 @@ public class CommissionObject {
         this.customerId = customerId;
     }
 
-    public float getCalculatedCommision() {
-        return calculatedCommision;
+    public float getCalculatedCommission() {
+        return calculatedCommission;
     }
 
-    public void setCalculatedCommision(float calculatedCommision) {
-        this.calculatedCommision = calculatedCommision;
+    public void setCalculatedCommission(float calculatedCommission) {
+        this.calculatedCommission = calculatedCommission;
     }
 
     public Date getTimeOfCalculation() {
