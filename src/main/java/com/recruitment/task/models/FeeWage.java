@@ -4,28 +4,28 @@ import com.recruitment.task.utils.DataConverter;
 
 public class FeeWage {
 
-    private Long transactionValueLessThan;
+    private Long maxValue;
     private float feePercentageOfTransactionValue;
 
     public FeeWage() {
     }
 
-    public FeeWage(Long transactionValueLessThan, float feePercentageOfTransactionValue) {
-        this.transactionValueLessThan = transactionValueLessThan;
+    public FeeWage(Long maxValue, float feePercentageOfTransactionValue) {
+        this.maxValue = maxValue;
         this.feePercentageOfTransactionValue = feePercentageOfTransactionValue;
     }
 
     public FeeWage(String[] feeWagesColumns) {
-        this.transactionValueLessThan = DataConverter.convertToLong(feeWagesColumns[0]);
+        this.maxValue = DataConverter.convertToLong(feeWagesColumns[0]);
         this.feePercentageOfTransactionValue = DataConverter.convertToFloat(feeWagesColumns[1]);
     }
 
-    public Long getTransactionValueLessThan() {
-        return transactionValueLessThan;
+    public Long getMaxValue() {
+        return maxValue;
     }
 
-    public void setTransactionValueLessThan(Long transactionValueLessThan) {
-        this.transactionValueLessThan = transactionValueLessThan;
+    public void setMaxValue(Long maxValue) {
+        this.maxValue = maxValue;
     }
 
     public float getFeePercentageOfTransactionValue() {
