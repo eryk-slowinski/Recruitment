@@ -33,16 +33,22 @@ public class AppService {
         Collections.sort(handledTransactions, new TransactionComparator().reversed());
         try {
             lastTransaction = handledTransactions.get(0);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("There is no customer with id: " + id);
         }
         TransactionsSummary transactionsSummary = new TransactionsSummary(lastTransaction.getCustomerFirstName(), lastTransaction.getCustomerLastName(), lastTransaction.getCustomerId(), handledTransactions.size(), 0.0f, 0.0f, lastTransaction.getTransactionDate());
         for (Transaction t : handledTransactions) {
             transactionsSummary.setTotalValueOfTransactions(transactionsSummary.getTotalValueOfTransactions() + t.getTransactionAmount());
         }
-        for (FeeWage fw : feeWages) {
-            if (fw.getTransactionValueLessThan() < transactionsSummary.getTotalValueOfTransactions()) {
-                transactionsSummary.setTransactionsFeeValue(fw.getFeePercentageOfTransactionValue() / 100 * transactionsSummary.getTotalValueOfTransactions());
+        for (int i = 0; i < feeWages.size(); i++) {
+            if (i > 0) {
+                if (feeWages.get(i).getMaxValue() > transactionsSummary.getTotalValueOfTransactions() && feeWages.get(i - 1).getMaxValue() <= transactionsSummary.getTotalValueOfTransactions()) {
+                    transactionsSummary.setTransactionsFeeValue(feeWages.get(i).getFeePercentageOfTransactionValue() / 100 * transactionsSummary.getTotalValueOfTransactions());
+                }
+            } else {
+                if (feeWages.get(i).getMaxValue() > transactionsSummary.getTotalValueOfTransactions()) {
+                    transactionsSummary.setTransactionsFeeValue(feeWages.get(i).getFeePercentageOfTransactionValue() / 100 * transactionsSummary.getTotalValueOfTransactions());
+                }
             }
         }
         createCommissionObject(transactionsSummary);
