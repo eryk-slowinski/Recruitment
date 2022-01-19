@@ -14,12 +14,12 @@ public class Controller {
     private AppService transactionsAppService;
 
     @GetMapping("/gettransactionsdetails/getbyid")
-    public ResponseEntity getTransactionsDetails(@RequestParam String id) {
-        return ResponseEntity.ok().body(transactionsAppService.getTransactionsDetails(id));
+    public ResponseEntity getTransactionsDetails(@RequestParam String customer_id) {
+        return ResponseEntity.ok().body(transactionsAppService.getTransactionsDetails(customer_id));
     }
 
     @GetMapping("/gettransactionsdetails")
-    public ResponseEntity getTransactionsDetails(){
+    public ResponseEntity getTransactionsDetails() {
         return ResponseEntity.ok().body(transactionsAppService.getTransactionsDetails());
     }
 
