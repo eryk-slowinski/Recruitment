@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class TransactionsSummary {
 
-    private String id;
     private String firstName;
     private String lastName;
     private Long customerId;
@@ -16,8 +15,7 @@ public class TransactionsSummary {
     public TransactionsSummary() {
     }
 
-    public TransactionsSummary(String id, String firstName, String lastName, Long customerId, int numberOfTransactions, float totalValueOfTransactions, float transactionsFeeValue, Date lastTransactionDate) {
-        this.id = id;
+    public TransactionsSummary(String firstName, String lastName, Long customerId, int numberOfTransactions, float totalValueOfTransactions, float transactionsFeeValue, Date lastTransactionDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.customerId = customerId;
@@ -25,14 +23,6 @@ public class TransactionsSummary {
         this.totalValueOfTransactions = totalValueOfTransactions;
         this.transactionsFeeValue = transactionsFeeValue;
         this.lastTransactionDate = lastTransactionDate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getFirstName() {
