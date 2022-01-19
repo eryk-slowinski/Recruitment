@@ -13,7 +13,7 @@ Application starts by default on port 8080 and provides 2 endpoints:
 Searching without parameters - it returns data of all customers
 
 ```bash
-http://localhost:8080/gettransactionsdetails/
+http://localhost:8080/calculatetransactions/
 ```
 Searching with parameter - it returns data of choosen customer or customers
 
