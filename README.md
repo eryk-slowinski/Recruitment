@@ -18,14 +18,14 @@ http://localhost:8080/gettransactionsdetails/
 Searching with parameter - it returns data of choosen customer or customers
 
 ```bash
-http://localhost:8080/gettransactionsdetails/getbyid?customer_id=1
-http://localhost:8080/gettransactionsdetails/getbyid?customer_id=1,3,4
+http://localhost:8080/calculatetransactions/getbyid?customer_id=1
+http://localhost:8080/calculatetransactions/getbyid?customer_id=1,3,4
 ```
 
 Or parameter customer_id=all - it returns data of all customers
 
 ```bash
-http://localhost:8080/gettransactionsdetails/getbyid?customer_id=all
+http://localhost:8080/calculatetransactions/getbyid?customer_id=all
 ```
 
 ## Unit tests
