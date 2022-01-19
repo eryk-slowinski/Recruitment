@@ -13,14 +13,14 @@ public class Controller {
     @Autowired
     private AppService transactionsAppService;
 
-    @GetMapping("/gettransactionsdetails/getbyid")
+    @GetMapping("/calculatetransactions/getbyid")
     public ResponseEntity getTransactionsDetails(@RequestParam String customer_id) {
-        return ResponseEntity.ok().body(transactionsAppService.getTransactionsDetails(customer_id));
+        return ResponseEntity.ok().body(transactionsAppService.calculateTransactions(customer_id));
     }
 
-    @GetMapping("/gettransactionsdetails")
+    @GetMapping("/calculatetransactions")
     public ResponseEntity getTransactionsDetails() {
-        return ResponseEntity.ok().body(transactionsAppService.getTransactionsDetails());
+        return ResponseEntity.ok().body(transactionsAppService.calculateTransactions());
     }
 
 }

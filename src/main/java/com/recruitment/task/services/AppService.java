@@ -45,7 +45,7 @@ public class AppService {
         return transactionsSummary;
     }
 
-    public List getTransactionsDetails(@RequestParam String customer_id) {
+    public List calculateTransactions(@RequestParam String customer_id) {
         String[] idParams = customer_id.split(",");
         ArrayList<Long> customersId = new ArrayList<>();
         ArrayList<TransactionsSummary> transactionsDetails = new ArrayList<>();
@@ -70,7 +70,7 @@ public class AppService {
         return transactionsDetails;
     }
 
-    public List getTransactionsDetails() {
+    public List calculateTransactions() {
         ArrayList<Long> customersId = new ArrayList<>();
         ArrayList<TransactionsSummary> transactionsDetails = new ArrayList<>();
 
