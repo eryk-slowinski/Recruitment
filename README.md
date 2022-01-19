@@ -30,7 +30,7 @@ http://localhost:8080/gettransactionsdetails/getbyid?customer_id=all
 
 ## Unit tests
 
-Application provides few unit tests of endpoint.
+Application provides few unit tests of endpoint. In order to run them you have to run application first.
 
 #### Via Maven
 
