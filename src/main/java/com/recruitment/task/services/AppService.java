@@ -19,10 +19,10 @@ public class AppService {
     @Autowired
     CommissionObjectRepository repository;
 
-    private TransactionsSummary createTransactionsSummary(String id) {
+    private TransactionsSummary createTransactionsSummary(String id) throws Exception {
         ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
         ArrayList<FeeWage> feeWages = (ArrayList<FeeWage>) DataConverter.csvToArrayList(FeeWage.class);
-
+        Transaction lastTransaction = new Transaction();
 
         ArrayList<Transaction> handledTransactions = new ArrayList<>();
         for (Transaction t : transactions) {
@@ -31,7 +31,11 @@ public class AppService {
             }
         }
         Collections.sort(handledTransactions, new TransactionComparator().reversed());
-        Transaction lastTransaction = handledTransactions.get(0);
+        try {
+            lastTransaction = handledTransactions.get(0);
+        } catch (Exception e){
+            throw new Exception("There is no customer with id: " + id);
+        }
         TransactionsSummary transactionsSummary = new TransactionsSummary(lastTransaction.getCustomerFirstName(), lastTransaction.getCustomerLastName(), lastTransaction.getCustomerId(), handledTransactions.size(), 0.0f, 0.0f, lastTransaction.getTransactionDate());
         for (Transaction t : handledTransactions) {
             transactionsSummary.setTotalValueOfTransactions(transactionsSummary.getTotalValueOfTransactions() + t.getTransactionAmount());
@@ -58,13 +62,26 @@ public class AppService {
                 }
             }
             for (Long customerId : customersId) {
-                transactionsDetails.add(createTransactionsSummary(customerId + ""));
+                try {
+                    transactionsDetails.add(createTransactionsSummary(customerId + ""));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    continue;
+                }
             }
         } else if (idParams.length == 1) {
-            transactionsDetails.add(createTransactionsSummary(idParams[0]));
+            try {
+                transactionsDetails.add(createTransactionsSummary(idParams[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             for (String customerId : idParams) {
-                transactionsDetails.add(createTransactionsSummary(customerId));
+                try {
+                    transactionsDetails.add(createTransactionsSummary(customerId));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         return transactionsDetails;
@@ -81,7 +98,12 @@ public class AppService {
             }
         }
         for (Long customerId : customersId) {
-            transactionsDetails.add(createTransactionsSummary(customerId + ""));
+            try {
+                transactionsDetails.add(createTransactionsSummary(customerId + ""));
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
         }
         return transactionsDetails;
     }
