@@ -23,12 +23,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authentication)
             throws Exception {
-        for (User user: Globals.users) {
             authentication.inMemoryAuthentication()
-                    .withUser(user.getUserName())
-                    .password("{noop}" + user.getUserPassword())
-                    .roles(user.getRoles());
+                    .withUser("digital")
+                    .password("{noop}collier")
+                    .roles("ADMIN");
         }
-    }
 
 }

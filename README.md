@@ -5,8 +5,7 @@ For instructions how to configure DB go to application.properties. There are two
 
 ## Authorization
 Application is secured by basic authorizaton (you have to provide user name and password).
-Predefined list of users is located in Globals class.
-
+Log in with user name 'digital' and password 'collier'
 ## Endpoints
 Application starts by default on port 8080 and provides 2 endpoints:
 
