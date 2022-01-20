@@ -1,6 +1,6 @@
 package com.recruitment.task;
 
-import com.recruitment.task.services.AppService;
+import com.recruitment.task.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    AppService appService;
+    UsersService usersService;
 
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {
@@ -33,7 +33,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(appService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(usersService).passwordEncoder(passwordEncoder());
     }
 
     @Override
