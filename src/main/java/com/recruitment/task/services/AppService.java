@@ -57,8 +57,8 @@ public class AppService {
         return transactionsSummary;
     }
 
-    public List calculateTransactions(@RequestParam String customer_id) {
-        String[] idParams = customer_id.split(",");
+    public List calculateTransactions(@RequestParam("customer_id") String customerId) {
+        String[] idParams = customerId.split(",");
         ArrayList<Long> customersId = new ArrayList<>();
         ArrayList<TransactionsSummary> transactionsDetails = new ArrayList<>();
 
@@ -69,9 +69,9 @@ public class AppService {
                     customersId.add(t.getCustomerId());
                 }
             }
-            for (Long customerId : customersId) {
+            for (Long custId : customersId) {
                 try {
-                    transactionsDetails.add(createTransactionsSummary(customerId + ""));
+                    transactionsDetails.add(createTransactionsSummary(custId + ""));
                 } catch (Exception e) {
                     e.printStackTrace();
                     continue;
@@ -84,9 +84,9 @@ public class AppService {
                 e.printStackTrace();
             }
         } else {
-            for (String customerId : idParams) {
+            for (String custId : idParams) {
                 try {
-                    transactionsDetails.add(createTransactionsSummary(customerId));
+                    transactionsDetails.add(createTransactionsSummary(custId));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -14,8 +14,8 @@ public class Controller {
     private AppService transactionsAppService;
 
     @GetMapping("/calculatetransactions/getbyid")
-    public ResponseEntity getTransactionsDetails(@RequestParam String customer_id) {
-        return ResponseEntity.ok().body(transactionsAppService.calculateTransactions(customer_id));
+    public ResponseEntity getTransactionsDetails(@RequestParam("customer_id") String customerId) {
+        return ResponseEntity.ok().body(transactionsAppService.calculateTransactions(customerId));
     }
 
     @GetMapping("/calculatetransactions")
