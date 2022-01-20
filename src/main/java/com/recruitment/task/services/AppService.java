@@ -44,10 +44,12 @@ public class AppService {
             if (i > 0) {
                 if (feeWages.get(i).getMaxValue() > transactionsSummary.getTotalValueOfTransactions() && feeWages.get(i - 1).getMaxValue() <= transactionsSummary.getTotalValueOfTransactions()) {
                     transactionsSummary.setTransactionsFeeValue(feeWages.get(i).getFeePercentageOfTransactionValue() / 100 * transactionsSummary.getTotalValueOfTransactions());
+                    break;
                 }
             } else {
                 if (feeWages.get(i).getMaxValue() > transactionsSummary.getTotalValueOfTransactions()) {
                     transactionsSummary.setTransactionsFeeValue(feeWages.get(i).getFeePercentageOfTransactionValue() / 100 * transactionsSummary.getTotalValueOfTransactions());
+                    break;
                 }
             }
         }
