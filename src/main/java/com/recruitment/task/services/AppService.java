@@ -1,6 +1,9 @@
 package com.recruitment.task.services;
 
-import com.recruitment.task.models.*;
+import com.recruitment.task.models.CommissionObject;
+import com.recruitment.task.models.FeeWage;
+import com.recruitment.task.models.Transaction;
+import com.recruitment.task.models.TransactionsSummary;
 import com.recruitment.task.repositories.CommissionObjectRepository;
 import com.recruitment.task.utils.DataConverter;
 import com.recruitment.task.utils.TransactionComparator;
@@ -12,15 +15,14 @@ import java.util.*;
 
 @Service
 public class AppService {
-
     @Autowired
     CommissionObjectRepository repository;
+    private List<CommissionObject> commissionObjects = new ArrayList<>();
 
     private TransactionsSummary createTransactionsSummary(String id) throws Exception {
         ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
         ArrayList<FeeWage> feeWages = (ArrayList<FeeWage>) DataConverter.csvToArrayList(FeeWage.class);
         Transaction lastTransaction = new Transaction();
-
         ArrayList<Transaction> handledTransactions = new ArrayList<>();
         for (Transaction t : transactions) {
             if (t.getCustomerId().equals(Long.valueOf(id))) {
@@ -58,7 +60,7 @@ public class AppService {
         String[] idParams = customerId.split(",");
         ArrayList<Long> customersId = new ArrayList<>();
         ArrayList<TransactionsSummary> transactionsDetails = new ArrayList<>();
-
+        commissionObjects = new ArrayList<>();
         if (idParams[0].toLowerCase(Locale.ROOT).equals("all".toLowerCase(Locale.ROOT))) {
             ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
             for (Transaction t : transactions) {
@@ -89,13 +91,14 @@ public class AppService {
                 }
             }
         }
+        repository.saveAll(commissionObjects);
         return transactionsDetails;
     }
 
     public List calculateTransactions() {
         ArrayList<Long> customersId = new ArrayList<>();
         ArrayList<TransactionsSummary> transactionsDetails = new ArrayList<>();
-
+        commissionObjects = new ArrayList<>();
         ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
         for (Transaction t : transactions) {
             if (!customersId.contains(t.getCustomerId())) {
@@ -110,13 +113,12 @@ public class AppService {
                 continue;
             }
         }
+        repository.saveAll(commissionObjects);
         return transactionsDetails;
     }
 
     private void createCommissionObject(TransactionsSummary transactionsSummary) {
         CommissionObject commissionObject = new CommissionObject(null, transactionsSummary.getCustomerId(), transactionsSummary.getTransactionsFeeValue(), new Date());
-        repository.save(commissionObject);
+        this.commissionObjects.add(commissionObject);
     }
-
 }
-
