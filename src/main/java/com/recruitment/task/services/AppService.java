@@ -16,8 +16,8 @@ import java.util.*;
 public class AppService {
     @Autowired
     CommissionObjectRepository repository;
-    ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
-    ArrayList<FeeWage> feeWages = (ArrayList<FeeWage>) DataConverter.csvToArrayList(FeeWage.class);
+    private ArrayList<Transaction> transactions = (ArrayList<Transaction>) DataConverter.csvToArrayList(Transaction.class);
+    private ArrayList<FeeWage> feeWages = (ArrayList<FeeWage>) DataConverter.csvToArrayList(FeeWage.class);
     private List<CommissionObject> commissionObjects = new ArrayList<>();
 
     private TransactionsSummary createTransactionsSummary(String id) throws Exception {
